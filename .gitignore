@@ -264,7 +264,7 @@ local.properties
 
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
-#.project
+.project
 
 ### Eclipse Patch ###
 # Spring Boot Tooling
@@ -685,3 +685,6 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/cmake,c++,c,visualstudiocode,visualstudio,clion,eclipse
+
+# Custom rules
+build/
