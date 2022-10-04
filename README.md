@@ -2,8 +2,8 @@
 
 ![version](https://img.shields.io/github/v/release/TomVer99/C-CPP_CMake_GTest-GithubActions?label=Release&style=flat-square)
 
-![maintained](https://img.shields.io/maintenance/yes/2022?style=flat-square)
-![issues](https://img.shields.io/github/issues-raw/TomVer99/C-CPP_CMake_GTest-GithubActions?style=flat-square)
+![Maintained](https://img.shields.io/maintenance/yes/2022?label=Maintained&style=flat-square)
+![Issues](https://img.shields.io/github/issues-raw/TomVer99/C-CPP_CMake_GTest-GithubActions?label=Issues&style=flat-square)
 [![Build](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fatrox%2Fsync-dotenv%2Fbadge&label=Build&style=flat-square)](https://actions-badge.atrox.dev/TomVer99/repoName/Build)
 [![Test](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fatrox%2Fsync-dotenv%2Fbadge&label=Test&style=flat-square)](https://actions-badge.atrox.dev/TomVer99/C-CPP_CMake_GTest-GithubActions/Test)
 
