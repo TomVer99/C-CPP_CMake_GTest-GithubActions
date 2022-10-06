@@ -79,14 +79,15 @@ This template uses [Google Test](https://github.com/google/googletest). There is
 
 To build the project, run the following commands:
 
-<span style="color: #ff0000;">**WIP**</span>
+```bash
+mkdir ./build/
 
-<!-- ```bash
-mkdir build
-cd build
-cmake ..
-cmake --build .
-``` -->
+cmake -B ./build/ -DCMAKE_BUILD_TYPE=Debug
+
+cmake --build ./build/ --target CHANGE_ME_Run --config Debug
+```
+
+The above mentioned commands will build the project in debug mode. To build in release mode, replace `Debug` with `Release`.
 
 #### 5.2. Visual Studio Code
 
