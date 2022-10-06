@@ -85,6 +85,11 @@ mkdir ./build/
 cmake -B ./build/ -DCMAKE_BUILD_TYPE=Debug
 
 cmake --build ./build/ --target CHANGE_ME_Run --config Debug
+
+# To run tests:
+cd ./build/
+
+ctest
 ```
 
 The above mentioned commands will build the project in debug mode. To build in release mode, replace `Debug` with `Release`.
