@@ -50,8 +50,8 @@ The CMake files provided are meant to be a starting point for your project.
 In this CMake file 3 variables are defined that should be edited on creation of a new project:
 
 - `ProjectName` - The name of the project
-- `ProjectRunName` - The name of the program executable that is generated (this is postfixed with `_run`).
-- `ProjectTestName` - The name of the test executable that is generated (this is postfixed with `_test`).
+- `ProjectRunName` - The name of the program executable that is generated (this is postfixed with `_Run`).
+- `ProjectTestName` - The name of the test executable that is generated (this is postfixed with `_Test`).
 
 ##### 2.5.2. [Source CMake](src/CMakeLists.txt)
 
@@ -77,14 +77,14 @@ This template uses [Google Test](https://github.com/google/googletest). There is
 
 #### 5.1. Command line
 
-To build the project, run the following commands:
+To build the project, run the following commands in the project folder:
 
 ```bash
 mkdir ./build/
 
 cmake -B ./build/ -DCMAKE_BUILD_TYPE=Debug
 
-cmake --build ./build/ --target CHANGE_ME_Run --config Debug
+cmake --build ./build/ --target CHANGE_ME --config Debug
 
 # To run tests:
 cd ./build/
@@ -93,6 +93,8 @@ ctest
 ```
 
 The above mentioned commands will build the project in debug mode. To build in release mode, replace `Debug` with `Release`.
+
+If you want to build an executable, add `_Run` or `_Test`. See the [CMake](#25-cmake) section for more information.
 
 #### 5.2. Visual Studio Code
 
