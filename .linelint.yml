@@ -1,0 +1,11 @@
+rules:
+  end-of-file:
+    enable: true
+
+    disable-autofix: true
+
+    ignore:
+      - README.md
+      - .gitignore
+      - LICENSE
+      - ./build/*
