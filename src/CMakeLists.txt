@@ -7,6 +7,7 @@ set(Headers
 
 # Add sources here
 set(Sources
+    main.cpp
     example.cpp
 )
 
