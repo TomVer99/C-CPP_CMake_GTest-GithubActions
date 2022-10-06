@@ -31,7 +31,7 @@ If you do not feel like changing the badges, you can remove them. Or if you feel
 
 The `LICENSE` file is the license of the project. You can change it to another license, or remove it if you do not want to use a license.
 
-It is recommended to use a pre existing license, as it is difficult to write a license yourself.
+It is recommended to use a pre-existing license, as it is difficult to write a license yourself.
 
 #### 2.3. [CI.yml](./.github/workflows/CI.yml)
 
@@ -74,6 +74,8 @@ In this CMake file the test source files are added to the project. You can add m
 This template uses [Google Test](https://github.com/google/googletest). There is a [sample unit test](test/gtest_validation_test.cpp) in the `test` folder.
 
 ### 5. Building
+
+To run the program / tests you can use one of the following tools:
 
 #### 5.1. Command line
 
