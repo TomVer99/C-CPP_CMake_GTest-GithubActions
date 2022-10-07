@@ -181,8 +181,8 @@ The file situation is as follows and we want to include `Example2.hpp` in `main.
 src/
 ├── Example/
 │   ├── CMakeLists.txt
-│   ├── Example2.cpp
-│   └── Example2.hpp
+│   ├── example2.cpp
+│   └── example2.hpp
 ├── CMakeLists.txt
 ├── example.cpp
 ├── example.hpp
@@ -192,11 +192,11 @@ src/
 Instead of being able to do:
 
 ```cpp
-#include "Example2.hpp"
+#include "example2.hpp"
 ```
 
 You will have to do:
 
 ```cpp
-#include "Example/Example2.hpp"
+#include "Example/example2.hpp"
 ```
