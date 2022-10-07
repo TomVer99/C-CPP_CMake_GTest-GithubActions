@@ -7,7 +7,6 @@ set(Sources
 
 add_executable(${ProjectTestName} ${Sources})
 
-# Gets the library build in src
 target_link_libraries(${ProjectTestName} PUBLIC
     gtest_main
     ${ProjectName}
