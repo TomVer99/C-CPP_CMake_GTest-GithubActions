@@ -109,3 +109,94 @@ To build and run the project in Visual Studio Code, set the build target on the 
 ##### 5.2.2. Running tests
 
 To build and run the tests in Visual Studio Code, press the `CTest` button in the status bar (default located to the right of the build target).
+
+### 6. Adding / Removing files
+
+#### 6.1. Same folder as CMake file
+
+If you decide to add a source / header file to the same folder as the CMake file, you will need to add the file to the `sources` / `headers` in the CMake file respectively.
+
+Example:
+
+Old:
+
+```cmake
+set(Headers
+    old_file.hpp
+)
+
+set(Sources
+    old_file.cpp
+)
+```
+
+New:
+
+```cmake
+set(Headers
+    old_file.hpp
+    new_file.hpp
+)
+
+set(Sources
+    old_file.cpp
+    new_file.cpp
+)
+```
+
+#### 6.2. Adding / Removing files in subdirectories
+
+If you decide to add a source / header file to a subdirectory, you will have to create a new CMake file in the subdirectory. This CMake file should contain the following:
+
+```cmake
+cmake_minimum_required(VERSION 3.23.1)
+
+set(Headers
+    new_file.hpp
+)
+
+set(Sources
+    new_file.cpp
+)
+
+add_library(ExampleLib STATIC ${Sources} ${Headers})
+```
+
+Example file provided [here](src/Example/CMakeLists.txt).
+
+In the directory above the subdirectory, you will have to add a handful of things:
+
+- Add the subdirectory using the `add_subdirectory()` command. Note that only one subdirectory can be added per `add_subdirectory()` command.
+- Add the library to the `target_link_libraries()` command. Note that as many libraries can be added as you want, and that they are not limited to a subdirectory.
+
+#### 6.3. Including the new files
+
+Keep in mind that none of these command will make any files globally known. Thus you still have to manually give the path to the file.
+
+Example:
+
+The file situation is as follows and we want to include `Example2.hpp` in `main.cpp`.
+
+```markdown
+src/
+├── Example/
+│   ├── CMakeLists.txt
+│   ├── example2.cpp
+│   └── example2.hpp
+├── CMakeLists.txt
+├── example.cpp
+├── example.hpp
+└── main.cpp
+```
+
+Instead of being able to do:
+
+```cpp
+#include "example2.hpp"
+```
+
+You will have to do:
+
+```cpp
+#include "Example/example2.hpp"
+```
