@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.23.1)
+set(CMakeMinimumVersion 3.23.1)
+
+cmake_minimum_required(VERSION ${CMakeMinimumVersion})
 
 set(ProjectName CHANGE_ME) # <Var name> <Name of the project>
 set(ProjectRunName ${ProjectName}_Run) # <Var name> <Name of the executable>
