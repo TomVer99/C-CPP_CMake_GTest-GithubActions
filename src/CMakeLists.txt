@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23.1)
+cmake_minimum_required(VERSION ${CMakeMinimumVersion})
 
 # Add headers here. If no headers, leave empty.
 set(Headers
