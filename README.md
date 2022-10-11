@@ -15,4 +15,4 @@ This template is meant to be used as a starting point for C/C++ projects using C
 
 ## Wiki
 
-The WiKi contains a lot of information about the project. Please check it out [here](https://github.com/TomVer99/C-CPP_CMake_GTest-GithubActions/wiki) or via the WiKi button at the top of the webpage.
+The WiKi contains a lot of information about the template. Please check it out [here](https://github.com/TomVer99/C-CPP_CMake_GTest-GithubActions/wiki) or via the WiKi button at the top of the webpage.
