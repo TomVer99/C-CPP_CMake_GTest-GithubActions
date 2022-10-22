@@ -5,6 +5,14 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason/Run name'
+        required: true
+        default: 'Manual trigger'
+
+run-name: ${{ inputs.reason || github.event.pull_request.title || github.event.head_commit.message || 'unexpected workflow trigger' }}
 
 jobs:
   linelint:

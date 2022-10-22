@@ -5,9 +5,39 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason/Run name'
+        required: true
+        default: 'Manual trigger'
+      debug_linux:
+        description: 'Build and test on Linux using debug configuration'
+        required: true
+        type: boolean
+        default: true
+      release_linux:
+        description: 'Build and test on Linux using release configuration'
+        required: true
+        type: boolean
+        default: true
+      debug_windows:
+        description: 'Build and test on Windows using debug configuration'
+        required: true
+        type: boolean
+        default: false
+      release_windows:
+        description: 'Build and test on Windows using release configuration'
+        required: true
+        type: boolean
+        default: false
+
+run-name: ${{ inputs.reason || github.event.pull_request.title || github.event.head_commit.message || 'unexpected workflow trigger' }}
 
 jobs:
   build_debug_and_test_linux:
+
+    if: ${{ (github.event_name != 'workflow_dispatch') || (github.event.inputs.debug_linux == 'true') }}
 
     runs-on: ubuntu-latest
 
@@ -30,6 +60,8 @@ jobs:
 
   build_release_and_test_linux:
 
+    if: ${{ (github.event_name != 'workflow_dispatch') || (github.event.inputs.release_linux == 'true') }}
+
     runs-on: ubuntu-latest
 
     env:
@@ -51,6 +83,8 @@ jobs:
 
   build_debug_and_test_windows:
 
+    if: ${{ (github.event_name != 'workflow_dispatch') || (github.event.inputs.debug_windows == 'true') }}
+
     runs-on: windows-latest
 
     env:
@@ -71,6 +105,8 @@ jobs:
       run: ctest -C ${{env.BUILD_TYPE}}
 
   build_release_and_test_windows:
+
+    if: ${{ (github.event_name != 'workflow_dispatch') || (github.event.inputs.release_windows == 'true') }}
 
     runs-on: windows-latest
 
