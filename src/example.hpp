@@ -5,7 +5,7 @@
 //######################################################################
 
 /**
- * @file example.h
+ * @file example.hpp
  * 
  * @brief Brief description of the file.
  * 
@@ -15,8 +15,8 @@
  * @date YYYY-MM-DD
  */
 
-#ifndef EXAMPLE_H
-#define EXAMPLE_H
+#ifndef EXAMPLE_HPP
+#define EXAMPLE_HPP
 
 //######################################################################
 //#                                                                    #
@@ -49,6 +49,6 @@ void PrintHelloWorld();
 
 } // namespace Example
 
-#endif //EXAMPLE_H
+#endif //EXAMPLE_HPP
 
 //###########################  End of File  ############################
