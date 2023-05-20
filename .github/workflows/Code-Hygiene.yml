@@ -2,7 +2,7 @@ name: Code Hygiene
 
 on:
   pull_request:
-    types: [ opened, review_requested ]
+    types: [ opened, reopened, review_requested, ready_for_review ]
   workflow_dispatch:
     inputs:
       reason:
