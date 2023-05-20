@@ -9,41 +9,36 @@ on:
         description: 'Reason/Run name'
         required: true
         default: 'Manual trigger'
-      debug_linux:
-        description: 'Build and test on Linux using debug configuration'
-        required: true
-        type: boolean
-        default: true
-      release_linux:
-        description: 'Build and test on Linux using release configuration'
-        required: true
-        type: boolean
-        default: true
-      debug_windows:
-        description: 'Build and test on Windows using debug configuration'
-        required: true
-        type: boolean
-        default: false
-      release_windows:
-        description: 'Build and test on Windows using release configuration'
-        required: true
-        type: boolean
-        default: false
 
 run-name: ${{ inputs.reason || github.event.pull_request.title || github.event.head_commit.message || 'unexpected workflow trigger' }}
 
+env:
+  SKIP_CI: false
+
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      skip-ci: ${{ env.SKIP_CI }}
+    steps:
+      - id: name-check
+        name: Check PR name
+        run: |
+          if [[ "${{ github.event.pull_request.title }}" =~ ^doc\/.*$|^docs\/.*$|^no-ci\/.*$ ]]; then
+            echo "Skipping CI for documentation-only PR"
+            echo "SKIP_CI=true" >> $GITHUB_ENV
+            exit 0
+          fi
+
   build_debug_and_test_linux:
-
-    if: ${{ (github.event_name != 'workflow_dispatch') || (github.event.inputs.debug_linux == 'true') }}
-
+    needs: check
+    if: ${{ needs.check.outputs.skip-ci == 'false' }}
     runs-on: ubuntu-latest
 
     env:
       BUILD_TYPE: Debug
 
     steps:
-    
     - uses: actions/checkout@v3
     
     - name: configure
@@ -54,73 +49,4 @@ jobs:
     
     - name: Test
       working-directory: ${{github.workspace}}/build
-      run: ctest -C ${{env.BUILD_TYPE}}
-
-  build_release_and_test_linux:
-
-    if: ${{ (github.event_name != 'workflow_dispatch') || (github.event.inputs.release_linux == 'true') }}
-
-    runs-on: ubuntu-latest
-
-    env:
-      BUILD_TYPE: Release
-
-    steps:
-    
-    - uses: actions/checkout@v3
-    
-    - name: configure
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-    
-    - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-    
-    - name: Test
-      working-directory: ${{github.workspace}}/build
-      run: ctest -C ${{env.BUILD_TYPE}}
-
-  build_debug_and_test_windows:
-
-    if: ${{ (github.event_name != 'workflow_dispatch') || (github.event.inputs.debug_windows == 'true') }}
-
-    runs-on: windows-latest
-
-    env:
-      BUILD_TYPE: Debug
-
-    steps:
-    
-    - uses: actions/checkout@v3
-    
-    - name: configure
-      run: cmake -B ${{github.workspace}}\build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-    
-    - name: Build
-      run: cmake --build ${{github.workspace}}\build --config ${{env.BUILD_TYPE}}
-    
-    - name: Test
-      working-directory: ${{github.workspace}}\build
-      run: ctest -C ${{env.BUILD_TYPE}}
-
-  build_release_and_test_windows:
-
-    if: ${{ (github.event_name != 'workflow_dispatch') || (github.event.inputs.release_windows == 'true') }}
-
-    runs-on: windows-latest
-
-    env:
-      BUILD_TYPE: Release
-
-    steps:
-    
-    - uses: actions/checkout@v3
-    
-    - name: configure
-      run: cmake -B ${{github.workspace}}\build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-    
-    - name: Build
-      run: cmake --build ${{github.workspace}}\build --config ${{env.BUILD_TYPE}}
-    
-    - name: Test
-      working-directory: ${{github.workspace}}\build
-      run: ctest -C ${{env.BUILD_TYPE}}
+      run: ctest -C ${{env.BUILD_TYPE}} -T test --output-on-failure
