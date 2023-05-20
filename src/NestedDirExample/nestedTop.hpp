@@ -5,7 +5,7 @@
 //######################################################################
 
 /**
- * @file example2.hpp
+ * @file nestedTop.hpp
  * 
  * @brief Brief description of the file.
  * 
@@ -15,8 +15,8 @@
  * @date YYYY-MM-DD
  */
 
-#ifndef EXAMPLE2_HPP
-#define EXAMPLE2_HPP
+#ifndef NESTED_TOP_HPP
+#define NESTED_TOP_HPP
 
 //######################################################################
 //#                                                                    #
@@ -30,7 +30,7 @@
 //#                                                                    #
 //######################################################################
 
-namespace Example2
+namespace Example
 {
 
 //######################################################################
@@ -45,10 +45,10 @@ namespace Example2
 //#                                                                    #
 //######################################################################
 
-void PrintHelloWorld();
+void PrintHelloWorldB();
 
 } // namespace Example
 
-#endif //EXAMPLE2_HPP
+#endif //NESTED_TOP_HPP
 
 //###########################  End of File  ############################

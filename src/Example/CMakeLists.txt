@@ -1,14 +1,13 @@
-cmake_minimum_required(VERSION ${CMakeMinimumVersion})
-
-# Add headers here
 set(Headers
-    example2.hpp
+    example.hpp
 )
 
-# Add sources here
 set(Sources
-    example2.cpp
+    example.cpp
 )
 
-# Makes a library from the sources and headers. First argument is the name of the library (used in src/CMakeLists.txt).
 add_library(ExampleLib STATIC ${Sources} ${Headers})
+
+target_include_directories(ExampleLib PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
