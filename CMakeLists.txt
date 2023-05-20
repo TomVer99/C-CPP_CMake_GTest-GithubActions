@@ -5,9 +5,9 @@ set(ProjectRunName ${ProjectName}_Run) # <Var name> <Name of the executable>
 set(ProjectTestName ${ProjectName}_Test) # <Var name> <Name of the executable>
 
 # set output directories for executables and libraries
-set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release )
-set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
-set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
+set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release/executables )
+set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release/libraries )
+set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release/libraries )
 
 project(${ProjectName} C CXX) # project uses C and C++ languages
 set(CMAKE_C_STANDARD 99) # C standard is C99
