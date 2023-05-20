@@ -16,7 +16,7 @@
 #include <gtest/gtest.h>
 
 // Example include
-// #include "../src/example.hpp"
+// #include <example.hpp>
 
 namespace
 {

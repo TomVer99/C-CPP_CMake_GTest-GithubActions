@@ -1,10 +1,12 @@
-#include "example.hpp"
-#include "Example/example2.hpp"
+#include <example.hpp>
+#include <nestedTop.hpp>
+#include <nestedBottom.hpp>
 #include <iostream>
 
-int main(int argc, char const *argv[])
+int main()
 {
     Example::PrintHelloWorld();
-    Example2::PrintHelloWorld();
+    Example::PrintHelloWorldB();
+    Example::PrintHelloWorldC();
     return 0;
 }
