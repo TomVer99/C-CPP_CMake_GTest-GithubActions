@@ -4,6 +4,7 @@
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![CMake](https://img.shields.io/badge/CMake-%2300599C.svg?style=for-the-badge&logo=cmake&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%2300599C.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+![Google Test](https://img.shields.io/badge/google%20test-%2300599C.svg?style=for-the-badge&logo=google&logoColor=white)
 
 ---
 
