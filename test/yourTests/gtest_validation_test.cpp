@@ -1,14 +1,14 @@
-//######################################################################
-//#                                                                    #
-//#                           C++ Test File                            #
-//#                                                                    #
-//######################################################################
+// ######################################################################
+// #                                                                    #
+// #                           C++ Test File                            #
+// #                                                                    #
+// ######################################################################
 
 /**
  * @file gtest_validation_test.cpp
- * 
+ *
  * @brief Brief description of the file.
- * 
+ *
  * @author XXXX
  * @date YYYY-MM-DD
  */
@@ -18,13 +18,12 @@
 // Example include
 // #include <example.hpp>
 
-namespace
-{
+namespace {
 
 TEST(GtestFunctionalityValidationTest, GtestFunctionalityValidationTest) {
-    ASSERT_EQ(1, 1);
+  ASSERT_EQ(1, 1);
 }
 
 }  // namespace
 
-//###########################  End of File  ############################
+// ###########################  End of File  ############################
