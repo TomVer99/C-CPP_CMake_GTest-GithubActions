@@ -9,6 +9,7 @@
 ---
 
 ![Release](https://img.shields.io/github/v/release/TomVer99/C-CPP_CMake_GTest-GithubActions?label=Release&style=flat-square)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/TomVer99/C-CPP_CMake_GTest-GithubActions/latest?style=flat-square)
 
 ![Maintained](https://img.shields.io/maintenance/yes/2024?label=Maintained&style=flat-square)
 ![Issues](https://img.shields.io/github/issues-raw/TomVer99/C-CPP_CMake_GTest-GithubActions?label=Issues&style=flat-square)
