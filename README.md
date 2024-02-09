@@ -30,7 +30,3 @@ It includes:
   * Only runs on PR creation and on Review requests
 * GitHub Actions setup for Code Hygiene (Just end of file newlines for now)
 * Automatic Labeling of Pull Requests
-
-## Wiki (outdated)
-
-The WiKi contains a lot of information about the template. Please check it out [here](https://github.com/TomVer99/C-CPP_CMake_GTest-GithubActions/wiki) or via the WiKi button at the top of the webpage.
