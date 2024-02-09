@@ -27,6 +27,6 @@ It includes:
 * CMake setup for building a library and an executable
 * Google Test setup for unit testing
 * GitHub Actions setup for CI
-  * Only runs on PR creation and on Review requests
-* GitHub Actions setup for Code Hygiene (Just end of file newlines for now)
+  * Only runs on PR creation and Review requests
+* GitHub Actions setup for Code Hygiene based on the Google C++ Style Guide
 * Automatic Labeling of Pull Requests
