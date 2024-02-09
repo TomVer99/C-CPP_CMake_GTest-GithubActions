@@ -10,10 +10,10 @@
 
 ![Release](https://img.shields.io/github/v/release/TomVer99/C-CPP_CMake_GTest-GithubActions?label=Release&style=flat-square)
 
-![Maintained](https://img.shields.io/maintenance/yes/2023?label=Maintained&style=flat-square)
+![Maintained](https://img.shields.io/maintenance/yes/2024?label=Maintained&style=flat-square)
 ![Issues](https://img.shields.io/github/issues-raw/TomVer99/C-CPP_CMake_GTest-GithubActions?label=Issues&style=flat-square)
-[![CI](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fatrox%2Fsync-dotenv%2Fbadge&label=CI&style=flat-square)](https://actions-badge.atrox.dev/TomVer99/C-CPP_CMake_GTest-GithubActions/CI)
-[![Code-Hygiene](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fatrox%2Fsync-dotenv%2Fbadge&label=Code-Hygiene&style=flat-square)](https://actions-badge.atrox.dev/TomVer99/C-CPP_CMake_GTest-GithubActions/Code-Hygiene)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/TomVer99/C-CPP_CMake_GTest-GithubActions/CI.yml?style=flat-square&label=CI)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/TomVer99/C-CPP_CMake_GTest-GithubActions/Code-Hygiene.yml?style=flat-square&label=Code-Hygiene)
 
 ![license](https://img.shields.io/github/license/TomVer99/C-CPP_CMake_GTest-GithubActions?color=blue&label=License&style=flat-square)
 
