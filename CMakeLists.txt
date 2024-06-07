@@ -23,6 +23,11 @@ elseif(MSVC)
 endif()
 
 # Testing
+# Test options
+if(BUILD_TESTING)
+  set(MEMORYCHECK_COMMAND_OPTIONS "--show-leak-kinds=all --leak-check=full --error-exitcode=1")
+endif()
+
 include(CTest)
 enable_testing()
 
@@ -31,7 +36,6 @@ if(BUILD_TESTING)
   add_compile_options(-Wall -Wextra -Wpedantic -fprofile-arcs -ftest-coverage)
   link_libraries(gcov)
   set(MEMORYCHECK_COMMAND valgrind)
-  set(MEMORYCHECK_COMMAND_OPTIONS "--show-leak-kinds=all --leak-check=full --error-exitcode=1")
 endif()
 
 # Code coverage
