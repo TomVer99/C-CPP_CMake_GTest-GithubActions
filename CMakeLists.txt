@@ -15,13 +15,23 @@ set(CMAKE_CXX_STANDARD 20) # C++ standard is C++20
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
-  add_compile_options(-Wall -Wextra -Wpedantic)
+  add_compile_options(-Wall -Wextra -Wpedantic -fprofile-arcs -ftest-coverage)
   # add_compile_options(-Werror)
 elseif(MSVC)
   add_compile_options(/W4)
   # add_compile_options(/WX)
 endif()
 
+# Code coverage
+set(COVERAGE_REPORT_DIR ${CMAKE_SOURCE_DIR}/report)
+file(MAKE_DIRECTORY ${COVERAGE_REPORT_DIR})
+add_custom_target(coverage
+  COMMAND lcov --ignore-errors inconsistent --capture --directory ./src/ --output-file ${COVERAGE_REPORT_DIR}/coverage.info --gcov-tool gcov
+  COMMAND lcov --ignore-errors inconsistent --list ${COVERAGE_REPORT_DIR}/coverage.info
+  COMMAND genhtml ${COVERAGE_REPORT_DIR}/coverage.info --output-directory ${COVERAGE_REPORT_DIR}/html
+)
+
+include(CTest)
 enable_testing()
 
 include(FetchContent)

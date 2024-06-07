@@ -16,3 +16,5 @@ add_test(
     NAME ${TestName}
     COMMAND ${TestName}
 )
+
+add_dependencies(coverage ${TestName})
