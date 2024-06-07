@@ -15,12 +15,12 @@
 
 #include <gtest/gtest.h>
 
-// Example include
-// #include <example.hpp>
+#include <nestedTop.hpp>
 
 namespace {
 
 TEST(GtestFunctionalityValidationTest, GtestFunctionalityValidationTest) {
+  Example::PrintHelloWorldB();
   ASSERT_EQ(1, 1);
 }
 

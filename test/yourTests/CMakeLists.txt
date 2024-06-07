@@ -9,6 +9,7 @@ add_executable(${TestName} ${Sources})
 target_link_libraries(${TestName} PUBLIC
     gtest_main
     # Add your library to test here
+    ExampleNestedTopLib
 )
 
 add_test(
