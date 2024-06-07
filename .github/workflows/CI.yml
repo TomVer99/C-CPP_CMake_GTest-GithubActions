@@ -89,5 +89,5 @@ jobs:
           await github.rest.issues.createComment({
             ...repo,
             issue_number: issueNumber,
-            body: '### Valgrind report\n\n${memReport}',
+            body: `### Valgrind report\n\n${memReport}`,
           });
