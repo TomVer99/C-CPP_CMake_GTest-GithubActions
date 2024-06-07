@@ -15,14 +15,14 @@
 
 #include <gtest/gtest.h>
 
-#include <nestedTop.hpp>
+#include <nestedBottom.hpp>
 
 namespace
 {
 
 TEST(GtestFunctionalityValidationTest, GtestFunctionalityValidationTest)
 {
-  Example::PrintHelloWorldB();
+  Example::PrintHelloWorldC();
   ASSERT_EQ(1, 1);
 }
 

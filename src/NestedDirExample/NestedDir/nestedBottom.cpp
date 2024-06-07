@@ -33,7 +33,8 @@
 
 #include <iostream>
 
-namespace Example {
+namespace Example
+{
 
 // ######################################################################
 // #                                                                    #
@@ -47,7 +48,8 @@ namespace Example {
 // #                                                                    #
 // ######################################################################
 
-void PrintHelloWorldC() {
+void PrintHelloWorldC()
+{
   std::cout << "Calling \"Hello World!B\" from Hello World!C" << std::endl;
   PrintHelloWorldB();
   std::cout << "Hello World!C" << std::endl;

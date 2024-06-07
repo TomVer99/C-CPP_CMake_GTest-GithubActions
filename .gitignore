@@ -688,3 +688,4 @@ FodyWeavers.xsd
 
 # Custom rules
 build/
+report/

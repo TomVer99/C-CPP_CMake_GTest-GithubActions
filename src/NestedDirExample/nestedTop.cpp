@@ -31,7 +31,8 @@
 
 #include <iostream>
 
-namespace Example {
+namespace Example
+{
 
 // ######################################################################
 // #                                                                    #

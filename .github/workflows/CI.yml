@@ -30,7 +30,7 @@ jobs:
             exit 0
           fi
 
-  build_debug_and_test_linux:
+  build_debug_test_report:
     needs: check
     if: ${{ needs.check.outputs.skip-ci == 'false' }}
     runs-on: ubuntu-latest
@@ -39,8 +39,11 @@ jobs:
       BUILD_TYPE: Debug
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
+    - name: Install dependencies
+      run: sudo apt-get install lcov
+
     - name: configure
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
     
@@ -49,4 +52,20 @@ jobs:
     
     - name: Test
       working-directory: ${{github.workspace}}/build
-      run: ctest -j18 -C ${{env.BUILD_TYPE}} -T test --output-on-failure
+      run: ctest -j18 -C ${{env.BUILD_TYPE}} -T test --output-on-failure --progress
+
+    - name: Coverage
+      run: make -C ${{github.workspace}}/build coverage
+
+    - name: Setup LCOV
+      uses: hrishikesh-kadam/setup-lcov@v1
+
+    - name: Report code coverage
+      uses: zgosalvez/github-actions-report-lcov@v4
+      with:
+        coverage-files: report/coverage.info
+        minimum-coverage: 90
+        artifact-name: code-coverage-report
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ${{github.workspace}}/src
+        update-comment: true
