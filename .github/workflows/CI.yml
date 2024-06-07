@@ -86,8 +86,30 @@ jobs:
           const issueNumber = context.issue.number;
           const repo = context.repo;
           const memReport = fs.readFileSync('./build/memReport.txt');
-          await github.rest.issues.createComment({
+
+          // Get all the comments on the issue
+          const comments = await github.rest.issues.listComments({
             ...repo,
             issue_number: issueNumber,
-            body: `### Valgrind report\n\n\`\`\`\n${memReport}\n\`\`\``,
           });
+
+          // Loop through all the comments and check if '### Valgrind report' is on the first line
+          const existingComment = comments.data.find((comment) => comment.body.startsWith('### Valgrind report'));
+
+          // If the comment already exists, update it
+          if (existingComment) {
+            await github.rest.issues.updateComment({
+              ...repo,
+              comment_id: existingComment.id,
+              body: `### Valgrind report\n\n\`\`\`\n${memReport}\n\`\`\``,
+            });
+            return;
+          // If the comment does not exist, create it
+          } else {
+            await github.rest.issues.createComment({
+              ...repo,
+              issue_number: issueNumber,
+              body: `### Valgrind report\n\n\`\`\`\n${memReport}\n\`\`\``,
+            });
+          }
+
