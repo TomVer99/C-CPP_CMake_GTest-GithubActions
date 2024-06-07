@@ -50,3 +50,36 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/build
       run: ctest -j18 -C ${{env.BUILD_TYPE}} -T test --output-on-failure
+
+  make_test_coverage_report:
+    needs: [build_debug_and_test_linux, check]
+    if: ${{ needs.check.outputs.skip-ci == 'false' }}
+    runs-on: ubuntu-latest
+
+    env:
+      BUILD_TYPE: Debug
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: sudo apt-get install gcov lcov
+
+    - name: Configure
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      run: ctest -j18 -C ${{env.BUILD_TYPE}} -T test --output-on-failure --progress
+
+    - name: Coverage
+      run: make -C ${{github.workspace}}/build coverage
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: ${{github.workspace}}/report/html/index.html
