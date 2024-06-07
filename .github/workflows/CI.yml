@@ -79,7 +79,7 @@ jobs:
 
     - name: Report valgrind by adding a comment
       uses: actions/github-script@v5
-      with: |
+      with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const issueNumber = context.issue.number;
