@@ -30,6 +30,7 @@ It includes:
 * GitHub Actions setup for CI
   * Only runs on PRs
 * GitHub Actions setup for Code Hygiene based on the Google C++ Style Guide
+  * Brackets on newlines
 * Automatic Labeling of Pull Requests
 * Code coverage analysis
   * Fails under 90%
