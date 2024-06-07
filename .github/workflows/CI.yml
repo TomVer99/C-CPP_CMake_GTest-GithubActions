@@ -3,14 +3,14 @@ name: CI
 on:
   pull_request:
     types: [ opened, reopened, synchronize ]
-  workflow_dispatch:
-    inputs:
-      reason:
-        description: 'Reason/Run name'
-        required: true
-        default: 'Manual trigger'
+#   workflow_dispatch:
+#     inputs:
+#       reason:
+#         description: 'Reason/Run name'
+#         required: true
+#         default: 'Manual trigger'
 
-run-name: ${{ inputs.reason || github.event.pull_request.title || github.event.head_commit.message || 'unexpected workflow trigger' }}
+# run-name: ${{ inputs.reason || github.event.pull_request.title || github.event.head_commit.message || 'unexpected workflow trigger' }}
 
 env:
   SKIP_CI: false
