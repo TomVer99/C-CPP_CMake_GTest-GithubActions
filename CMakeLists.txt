@@ -27,8 +27,8 @@ endif()
 set(COVERAGE_REPORT_DIR ${CMAKE_SOURCE_DIR}/report)
 file(MAKE_DIRECTORY ${COVERAGE_REPORT_DIR})
 add_custom_target(coverage
-  COMMAND lcov --ignore-errors inconsistent --capture --directory ./src/ --output-file ${COVERAGE_REPORT_DIR}/coverage.info --gcov-tool gcov
-  COMMAND lcov --ignore-errors inconsistent --list ${COVERAGE_REPORT_DIR}/coverage.info
+  COMMAND lcov --capture --directory ./src/ --output-file ${COVERAGE_REPORT_DIR}/coverage.info --gcov-tool gcov
+  COMMAND lcov --list ${COVERAGE_REPORT_DIR}/coverage.info
   COMMAND genhtml ${COVERAGE_REPORT_DIR}/coverage.info --output-directory ${COVERAGE_REPORT_DIR}/html
 )
 
