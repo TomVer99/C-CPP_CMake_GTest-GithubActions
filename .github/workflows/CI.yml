@@ -77,6 +77,46 @@ jobs:
         working-directory: ${{github.workspace}}/src
         update-comment: true
 
+    - name: Reprot test by adding a comment
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const fs = require('fs');
+          const issueNumber = context.issue.number;
+          const repo = context.repo;
+          const testReport = fs.readFileSync('./build/testReport.txt');
+          const commit_sha = context.payload.pull_request.head.sha;
+          const commit_sha_short = commit_sha.substr(0, 7);
+
+          const body_string = `### Test report of commit [<code>${commit_sha_short}</code>](${context.payload.pull_request.number}/commits/${commit_sha}) during [${context.workflow} #${context.runNumber}](../actions/runs/${context.runId})\n\n\`\`\`\n${testReport}\n\`\`\``;
+
+          // Get all the comments on the issue
+          const comments = await github.rest.issues.listComments({
+            ...repo,
+            issue_number: issueNumber,
+          });
+
+          // Loop through all the comments and check if '### Test report' is on the first line
+          const existingComment = comments.data.find((comment) => comment.body.startsWith('### Test report'));
+
+          // If the comment already exists, update it
+          if (existingComment) {
+            await github.rest.issues.updateComment({
+              ...repo,
+              comment_id: existingComment.id,
+              body: body_string,
+            });
+            return;
+          // If the comment does not exist, create it
+          } else {
+            await github.rest.issues.createComment({
+              ...repo,
+              issue_number: issueNumber,
+              body: body_string,
+            });
+          }
+
     - name: Report valgrind by adding a comment
       uses: actions/github-script@v5
       with:
