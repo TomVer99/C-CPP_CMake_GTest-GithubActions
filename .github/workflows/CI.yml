@@ -52,7 +52,9 @@ jobs:
     
     - name: Test
       working-directory: ${{github.workspace}}/build
-      run: ctest -j18 -C ${{env.BUILD_TYPE}} -T test --output-on-failure --progress
+      run: |
+        ctest -j18 -C ${{env.BUILD_TYPE}} -T test --output-on-failure --progress
+        ctest -D ExperimentalMemCheck
 
     - name: Coverage
       run: make -C ${{github.workspace}}/build coverage
