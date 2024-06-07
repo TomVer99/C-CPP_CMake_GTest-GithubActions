@@ -86,10 +86,10 @@ jobs:
           const issueNumber = context.issue.number;
           const repo = context.repo;
           const memReport = fs.readFileSync('./build/memReport.txt');
-          const commit_sha = github.context.payload.pull_request.head.sha;
+          const commit_sha = context.payload.pull_request.head.sha;
           const commit_sha_short = commit_sha.substr(0, 7);
 
-          const body_string = `### Valgrind report of commit [<code>${commit_sha_short}</code>](${github.context.payload.pull_request.number}/commits/${commit_sha})\n\n\`\`\`\n${memReport}\n\`\`\``;
+          const body_string = `### Valgrind report of commit [<code>${commit_sha_short}</code>](${context.payload.pull_request.number}/commits/${commit_sha})\n\n\`\`\`\n${memReport}\n\`\`\``;
 
           // Get all the comments on the issue
           const comments = await github.rest.issues.listComments({
