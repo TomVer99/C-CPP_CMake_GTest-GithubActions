@@ -85,7 +85,7 @@ jobs:
           const fs = require('fs');
           const issueNumber = context.issue.number;
           const repo = context.repo;
-          const memReport = fs.readFileSync('path/to/memReport.txt',
+          const memReport = fs.readFileSync('path/to/memReport.txt'),
           await github.rest.issues.createComment({
             ...repo,
             issue_number: issueNumber,
