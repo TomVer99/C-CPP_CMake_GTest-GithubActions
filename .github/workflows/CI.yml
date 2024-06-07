@@ -76,3 +76,16 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ${{github.workspace}}/src
         update-comment: true
+
+    - name: Report valgrind by adding a comment
+      uses: actions/github-script@v5
+      with: |
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const issueNumber = context.issue.number;
+          const repo = context.repo;
+          await github.rest.issues.createComment({
+            ...repo,
+            issue_number: issueNumber,
+            body: 'Valgrind report',
+          });
