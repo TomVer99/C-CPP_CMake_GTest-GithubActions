@@ -3,7 +3,8 @@
 #include <nestedBottom.hpp>
 #include <nestedTop.hpp>
 
-int main() {
+int main()
+{
   Example::PrintHelloWorld();
   Example::PrintHelloWorldB();
   Example::PrintHelloWorldC();

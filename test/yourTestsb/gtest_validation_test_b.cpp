@@ -17,9 +17,11 @@
 
 #include <nestedBottom.hpp>
 
-namespace {
+namespace
+{
 
-TEST(GtestFunctionalityValidationTest, GtestFunctionalityValidationTest) {
+TEST(GtestFunctionalityValidationTest, GtestFunctionalityValidationTest)
+{
   Example::PrintHelloWorldC();
   ASSERT_EQ(1, 1);
 }
