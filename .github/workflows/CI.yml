@@ -86,6 +86,10 @@ jobs:
           const issueNumber = context.issue.number;
           const repo = context.repo;
           const memReport = fs.readFileSync('./build/memReport.txt');
+          const commit_sha = context.sha;
+          const CI = context.workflow;
+
+          const body_string = `### Valgrind report of commit ${commit_sha} during ${CI}\n\n\`\`\`\n${memReport}\n\`\`\``;
 
           // Get all the comments on the issue
           const comments = await github.rest.issues.listComments({
@@ -101,7 +105,7 @@ jobs:
             await github.rest.issues.updateComment({
               ...repo,
               comment_id: existingComment.id,
-              body: `### Valgrind report\n\n\`\`\`\n${memReport}\n\`\`\``,
+              body: body_string,
             });
             return;
           // If the comment does not exist, create it
@@ -109,7 +113,7 @@ jobs:
             await github.rest.issues.createComment({
               ...repo,
               issue_number: issueNumber,
-              body: `### Valgrind report\n\n\`\`\`\n${memReport}\n\`\`\``,
+              body: body_string,
             });
           }
 
