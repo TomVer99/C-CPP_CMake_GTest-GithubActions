@@ -59,7 +59,8 @@ jobs:
         ctest -D ExperimentalMemCheck
 
     - name: Coverage
-      run: make -C ${{github.workspace}}/build coverage
+      working-directory: ${{github.workspace}}/build
+      run: make coverage
 
     - name: Setup LCOV
       uses: hrishikesh-kadam/setup-lcov@v1
