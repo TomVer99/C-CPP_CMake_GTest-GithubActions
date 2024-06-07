@@ -16,6 +16,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
   add_compile_options(-Wall -Wextra -Wpedantic -fprofile-arcs -ftest-coverage)
+  link_libraries(gcov)
   # add_compile_options(-Werror)
 elseif(MSVC)
   add_compile_options(/W4)
