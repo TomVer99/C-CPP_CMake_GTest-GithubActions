@@ -68,3 +68,4 @@ jobs:
         artifact-name: code-coverage-report
         github-token: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ${{github.workspace}}/src
+        update-comment: true
