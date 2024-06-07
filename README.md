@@ -5,6 +5,7 @@
 ![CMake](https://img.shields.io/badge/CMake-%2300599C.svg?style=for-the-badge&logo=cmake&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%2300599C.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Google Test](https://img.shields.io/badge/google%20test-%2300599C.svg?style=for-the-badge&logo=google&logoColor=white)
+![lcov](https://img.shields.io/badge/lcov-%2300599C.svg?style=for-the-badge&logo=gnu&logoColor=white)
 
 ---
 
@@ -30,3 +31,12 @@ It includes:
   * Only runs on PRs
 * GitHub Actions setup for Code Hygiene based on the Google C++ Style Guide
 * Automatic Labeling of Pull Requests
+* Code coverage analysis
+  * Fails under 90%
+  * Only counts /src/ files
+
+## Requirements
+
+* CMake
+* GCC
+* lcov
