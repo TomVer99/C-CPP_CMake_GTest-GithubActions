@@ -35,14 +35,7 @@ enable_testing()
 if(BUILD_TESTING)
   add_compile_options(-Wall -Wextra -Wpedantic -fprofile-arcs -ftest-coverage)
   link_libraries(gcov)
-  # set(MEMORYCHECK_COMMAND valgrind)
-
-  find_program(MEMORYCHECK_COMMAND NAMES valgrind)
-  if(MEMORYCHECK_COMMAND-NOTFOUND)
-    message(FATAL_ERROR "Valgrind not found! Please install it.")
-  endif()
-
-  # set(MEMORYCHECK_COMMAND "/usr/bin/valgrind")
+  set(MEMORYCHECK_COMMAND valgrind)
 endif()
 
 # Code coverage
