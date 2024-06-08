@@ -36,9 +36,12 @@ It includes:
 * Code coverage analysis
   * Fails under 90%
   * Only counts /src/ files
+* Valgrind memory leak detection
+  * Fails if memory leaks are detected
 
 ## Requirements
 
 * CMake
 * GCC
 * lcov
+* Valgrind
