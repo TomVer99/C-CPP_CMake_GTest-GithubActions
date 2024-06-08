@@ -121,7 +121,7 @@ jobs:
         name: test
         path: ${{github.workspace}}/build
 
-  memory_leak_check:
+  memory:
     needs: test
     runs-on: ubuntu-latest
     env:
