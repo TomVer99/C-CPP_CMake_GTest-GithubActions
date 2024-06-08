@@ -73,7 +73,8 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: ctest -j18 -C ${{env.BUILD_TYPE}} -T test --output-on-failure --progress --output-log testReport.txt
 
-    - name: Reprot test by adding a comment
+    - name: Report test by adding a comment
+      if: ${{ success() || failure() }}
       uses: actions/github-script@v5
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -147,6 +148,7 @@ jobs:
       run: ctest -D ExperimentalMemCheck ${{env.BUILD_TYPE}} --output-on-failure --fail-on-leaks --output-log memReport.txt
 
     - name: Report valgrind by adding a comment
+      if: ${{ success() || failure() }}
       uses: actions/github-script@v5
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -220,131 +222,3 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ${{github.workspace}}/src
         update-comment: true
-        
-  # build_debug_test_report:
-  #   needs: check
-  #   if: ${{ needs.check.outputs.skip-ci == 'false' }}
-  #   runs-on: ubuntu-latest
-
-  #   env:
-  #     BUILD_TYPE: Debug
-
-  #   steps:
-  #   - uses: actions/checkout@v4
-    
-  #   - name: Install dependencies
-  #     run: |
-  #       sudo apt-get install lcov
-  #       sudo apt-get install valgrind
-
-  #   - name: configure
-  #     run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-    
-  #   - name: Build
-  #     run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-    
-  #   - name: Test
-  #     working-directory: ${{github.workspace}}/build
-  #     run: ctest -j18 -C ${{env.BUILD_TYPE}} -T test --output-on-failure --progress --output-log testReport.txt
-
-  #   - name: Memory leaks
-  #     working-directory: ${{github.workspace}}/build
-  #     run: ctest -D ExperimentalMemCheck ${{env.BUILD_TYPE}} --output-on-failure --fail-on-leaks --output-log memReport.txt
-
-  #   - name: Coverage
-  #     working-directory: ${{github.workspace}}/build
-  #     run: make coverage
-
-  #   - name: Setup LCOV
-  #     uses: hrishikesh-kadam/setup-lcov@v1
-
-  #   - name: Report code coverage
-  #     uses: zgosalvez/github-actions-report-lcov@v4
-  #     with:
-  #       coverage-files: report/coverage.info
-  #       minimum-coverage: 90
-  #       artifact-name: code-coverage-report
-  #       github-token: ${{ secrets.GITHUB_TOKEN }}
-  #       working-directory: ${{github.workspace}}/src
-  #       update-comment: true
-
-  #   - name: Reprot test by adding a comment
-  #     uses: actions/github-script@v5
-  #     with:
-  #       github-token: ${{ secrets.GITHUB_TOKEN }}
-  #       script: |
-  #         const fs = require('fs');
-  #         const issueNumber = context.issue.number;
-  #         const repo = context.repo;
-  #         const testReport = fs.readFileSync('./build/testReport.txt');
-  #         const commit_sha = context.payload.pull_request.head.sha;
-  #         const commit_sha_short = commit_sha.substr(0, 7);
-
-  #         const body_string = `### Test report of commit [<code>${commit_sha_short}</code>](${context.payload.pull_request.number}/commits/${commit_sha}) during [${context.workflow} #${context.runNumber}](../actions/runs/${context.runId})\n\n\`\`\`\n${testReport}\n\`\`\``;
-
-  #         // Get all the comments on the issue
-  #         const comments = await github.rest.issues.listComments({
-  #           ...repo,
-  #           issue_number: issueNumber,
-  #         });
-
-  #         // Loop through all the comments and check if '### Test report' is on the first line
-  #         const existingComment = comments.data.find((comment) => comment.body.startsWith('### Test report'));
-
-  #         // If the comment already exists, update it
-  #         if (existingComment) {
-  #           await github.rest.issues.updateComment({
-  #             ...repo,
-  #             comment_id: existingComment.id,
-  #             body: body_string,
-  #           });
-  #           return;
-  #         // If the comment does not exist, create it
-  #         } else {
-  #           await github.rest.issues.createComment({
-  #             ...repo,
-  #             issue_number: issueNumber,
-  #             body: body_string,
-  #           });
-  #         }
-
-  #   - name: Report valgrind by adding a comment
-  #     uses: actions/github-script@v5
-  #     with:
-  #       github-token: ${{ secrets.GITHUB_TOKEN }}
-  #       script: |
-  #         const fs = require('fs');
-  #         const issueNumber = context.issue.number;
-  #         const repo = context.repo;
-  #         const memReport = fs.readFileSync('./build/memReport.txt');
-  #         const commit_sha = context.payload.pull_request.head.sha;
-  #         const commit_sha_short = commit_sha.substr(0, 7);
-
-  #         const body_string = `### Valgrind report of commit [<code>${commit_sha_short}</code>](${context.payload.pull_request.number}/commits/${commit_sha}) during [${context.workflow} #${context.runNumber}](../actions/runs/${context.runId})\n\n\`\`\`\n${memReport}\n\`\`\``;
-
-  #         // Get all the comments on the issue
-  #         const comments = await github.rest.issues.listComments({
-  #           ...repo,
-  #           issue_number: issueNumber,
-  #         });
-
-  #         // Loop through all the comments and check if '### Valgrind report' is on the first line
-  #         const existingComment = comments.data.find((comment) => comment.body.startsWith('### Valgrind report'));
-
-  #         // If the comment already exists, update it
-  #         if (existingComment) {
-  #           await github.rest.issues.updateComment({
-  #             ...repo,
-  #             comment_id: existingComment.id,
-  #             body: body_string,
-  #           });
-  #           return;
-  #         // If the comment does not exist, create it
-  #         } else {
-  #           await github.rest.issues.createComment({
-  #             ...repo,
-  #             issue_number: issueNumber,
-  #             body: body_string,
-  #           });
-  #         }
-
