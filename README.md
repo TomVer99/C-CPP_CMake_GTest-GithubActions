@@ -6,6 +6,7 @@
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%2300599C.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Google Test](https://img.shields.io/badge/google%20test-%2300599C.svg?style=for-the-badge&logo=google&logoColor=white)
 ![lcov](https://img.shields.io/badge/lcov-%2300599C.svg?style=for-the-badge&logo=gnu&logoColor=white)
+![valgrind](https://img.shields.io/badge/valgrind-%2300599C.svg?style=for-the-badge&logo=valgrind&logoColor=white)
 
 ---
 
@@ -35,9 +36,12 @@ It includes:
 * Code coverage analysis
   * Fails under 90%
   * Only counts /src/ files
+* Valgrind memory leak detection
+  * Fails if memory leaks are detected
 
 ## Requirements
 
 * CMake
 * GCC
 * lcov
+* Valgrind

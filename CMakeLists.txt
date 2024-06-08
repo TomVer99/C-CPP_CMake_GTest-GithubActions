@@ -15,12 +15,27 @@ set(CMAKE_CXX_STANDARD 20) # C++ standard is C++20
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
-  add_compile_options(-Wall -Wextra -Wpedantic -fprofile-arcs -ftest-coverage)
-  link_libraries(gcov)
+  add_compile_options(-Wall -Wextra -Wpedantic)
   # add_compile_options(-Werror)
 elseif(MSVC)
   add_compile_options(/W4)
   # add_compile_options(/WX)
+endif()
+
+# Testing
+# Test options
+if(BUILD_TESTING)
+  set(MEMORYCHECK_COMMAND_OPTIONS "--show-leak-kinds=all --leak-check=full --error-exitcode=1")
+endif()
+
+include(CTest)
+enable_testing()
+
+# Test options
+if(BUILD_TESTING)
+  add_compile_options(-Wall -Wextra -Wpedantic -fprofile-arcs -ftest-coverage)
+  link_libraries(gcov)
+  set(MEMORYCHECK_COMMAND valgrind)
 endif()
 
 # Code coverage
@@ -31,9 +46,6 @@ add_custom_target(coverage
   COMMAND lcov --list ${COVERAGE_REPORT_DIR}/coverage.info
   COMMAND genhtml ${COVERAGE_REPORT_DIR}/coverage.info --output-directory ${COVERAGE_REPORT_DIR}/html
 )
-
-include(CTest)
-enable_testing()
 
 include(FetchContent)
 
