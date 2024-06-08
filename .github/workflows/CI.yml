@@ -37,11 +37,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get install lcov
-        sudo apt-get install valgrind
-
     - name: configure
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
@@ -119,6 +114,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install dependencies
+      run: sudo apt-get install valgrind
+
     - name: Download build artifact
       uses: actions/download-artifact@v2
       with:
@@ -177,6 +175,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: sudo apt-get install lcov
 
     - name: Download build artifact
       uses: actions/download-artifact@v2
