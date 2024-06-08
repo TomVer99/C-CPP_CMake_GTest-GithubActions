@@ -111,7 +111,7 @@ jobs:
     - name: Overwrite build artifact with test results
       uses: actions/upload-artifact@v4
       with:
-        name: build
+        name: test
         path: ${{github.workspace}}/build
 
   memory_leak_check:
@@ -126,7 +126,7 @@ jobs:
     - name: Download build artifact
       uses: actions/download-artifact@v4
       with:
-        name: build
+        name: test
         path: ${{github.workspace}}/build
 
     - name: Just make everything have every permission
@@ -188,7 +188,7 @@ jobs:
     - name: Download build artifact
       uses: actions/download-artifact@v4
       with:
-        name: build
+        name: test
         path: ${{github.workspace}}/build
 
     - name: Just make everything have every permission
