@@ -108,8 +108,14 @@ jobs:
             });
           }
 
+    - name: Overwrite build artifact with test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: ${{github.workspace}}/build
+
   memory_leak_check:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -171,7 +177,7 @@ jobs:
           }
 
   coverage:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
